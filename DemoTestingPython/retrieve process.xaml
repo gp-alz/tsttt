@@ -1,0 +1,430 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="retrieve_process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.Collections;assembly=mscorlib" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:uuam="clr-namespace:UiPath.UIAutomationNext.Activities.Models;assembly=UiPath.UIAutomationNext.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="iter_list" Type="InArgument(sc:IEnumerable)" />
+    <x:Property Name="index" Type="InArgument(x:Object)" />
+    <x:Property Name="Excel_session" Type="InArgument(ue:IWorkbookQuickHandle)" />
+    <x:Property Name="temp_list" Type="OutArgument(scg:ICollection(x:String))" />
+    <x:Property Name="actuations_datatable" Type="OutArgument(sd:DataTable)" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>961.6,4653.6</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="64">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities.Business</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="64">
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap:VirtualizedContainerService.HintSize="836.8,4588.8" sap2010:WorkflowViewState.IdRef="Sequence_42">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: - Consulta de Procesos - eSATJE -" sap:VirtualizedContainerService.HintSize="795.2,4496" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="8c5520bb-bdcc-4dab-b54a-1e01b90e661e" Version="V1">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="761.6,4279.2" sap2010:WorkflowViewState.IdRef="Sequence_40">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Sequence sap:VirtualizedContainerService.HintSize="720,4184.8" sap2010:WorkflowViewState.IdRef="Sequence_41">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="678.4,4090.4" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:Boolean" Name="buttomExist" />
+                  <Variable x:TypeArguments="x:Int32" Default="0" Name="incremento" />
+                  <Variable x:TypeArguments="x:Boolean" Default="False" Name="area_exists" />
+                  <Variable x:TypeArguments="x:Boolean" Name="break_controller" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Delay Duration="00:00:08" sap:VirtualizedContainerService.HintSize="636.8,22.4" sap2010:WorkflowViewState.IdRef="Delay_7" />
+                <uix:NClick ClickType="Single" DisplayName="Click 'Abrir Incidentes'" sap:VirtualizedContainerService.HintSize="636.8,157.6" sap2010:WorkflowViewState.IdRef="NClick_11" KeyModifiers="None" MouseButton="Left">
+                  <uix:NClick.Target>
+                    <uix:TargetAnchorable BrowserURL="http://consultas.funcionjudicial.gob.ec/informacionjudicial/public/informacion.jsf" DesignTimeRectangle="1724, 739, 52, 36" ElementType="Button" FriendlyName="'Abrir Incidentes'" Guid="2a059544-a9b8-4547-8bff-1f906b465caa" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADgAAAAoCAYAAACrUDmFAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAVbSURBVGhD7ZZ3TJRnAIfvr0KNoKZ/0FqVOmjTpImJaaodceC2KENAZU9FFFFQmR5bUUDogYLAwQ3u8JgnIsgIDqoVcaA1bUwTEztiaJXW1VLX0/fQu9SmyfUfrz17b/Lkey/f9+b3Pu88yYezZvEyIp/uOoJN0FqxCVo7NkFr5/8j6OTkxMuMTdDasQlaOzZBa8cmaO3YBK2dl1+wr68PI5GZKl6ZIzVDGh8E5bEiRsbssALmRhTgv30/i6IK8Y7fx9p0OaNd00kq0OARW8IEt2zs56XjuDADJ7edOHvkEp930JT5opEMDAxgJGrXQezmZZohi5mhRXhuKWXuWhmuUTKCkytYurGEVQnlRGerGL0wG6msDq/4A0x0z2Xc0l3MCCggKKWShAItWn23KfNFI7l69SpGYvKbsVuQa4bdfBS5H+9tcuZHl7FwYxnhaUrcNpfjn6pk0x4dDov3kFXWgm+igolehTj7yNi0u47243180S+CL18xZb5oJNevX8fIFlkbdosLzLCXT9ZXsipZzaJNVSzZXMXanIO4b1MQnFFLfKEeh2WF5FZ1sGaHlkm+JUzxO0DKvja+/PobU5alkAwODmJkW2k3dktlZihmdowSP6mOJXFqlm1VE727Ec9EDWE5DSSUtOG4vIR89TECMhpwXl3GlAA5SaVdXL32rSnLUkiGhoYwklB+HLtP95lhP3NiNaLzjSzbVotbQi0b8w+xMkVHRK5eiHTiuKKUotpegrKbecu/kqlBSlLKe7j23Q1TlqWQ3Lt3DyPJVaewX37ADOXMi9MRnH0It8R6ViTXE1vUho+0kbX5R0it6MHRo4Li+jOE7mplcqCCqaEapFW9fD94y5RlKSTDw8MYSVWcwX5FhRkqcd3aQMjOVpYnNeGe0iT2bge+6Xqi9h5FKj/BGC85+5v6CdvdzuQgFdPCaklXnObGzdumLEshefDgAUakqrNCQG6GKubGNxKYIwRT9Ljv0BNX3MmqzBbWF3aQXt0rBKsp1Z8nfM9RJgfXMC1cR6bqDINDd01ZlkLy8OFDjEhV/di7V5lBwYLtzaLz7XhJW3BPbSaupIvVBsGiTjFTnzNmpYIy/QXC8zqYHGIU7OPHn++ZsiyF5NGjRxhJU5/7GyEj1YzyqGZioJaI/G6SDpwQsycEpXq27utmdVYrG4q6yFCeeirYcpHI/E6mhGhwiagjS32Wn365b8qyFJLHjx9jJK3GIFj9PB4KRnkqGeOt5k1/DYG5R6ntvkJBw3lmROvwFWKJZT34ZR8hRtZDTs1pIahEfuQS6/Z2MzVEKwTryao5y83bv5qyLIXkyZMnGEmvOS+EDFLP8FQJlDgHa/HNbKOy9RLVRwbY8FkP06MbmRQirob8o2RUnyRUiG8tPU6e7ixjvRWoO79ioxB2EQeMS6RBsJ9bd34zZVkKCX8q6ZoLIzNmkLL3VI8sLc+MdlLkpyjQ9RNbfIzFya24hNcxxlfDa2u0zBf70SejVRw8TbilHiZgVwcOXko2yI6zJLmF8QFiiUY2kK05x9Dd4WdJlit/EbzIq0JunK+Kj+MPEZrXRVLFSbaX97J6ZxfvRdUz1kctBsEwAEpGr1QxKUg7cg1MCNSIA6WWtyN0YkkrxLfiX0xwLY7e4poQSzRD3c/QnX9ZMLfuEu+IWXOTto1czCmVvQTv6eL9mCYho8bBpwYH0WEHsceeIuqG32J/jtQN34zUxTvxNLQxDMK76xrI0f4HZlDefoVNJcc4deUHKg5fZEFiC05+WhyF2Ot+mpFD5p8y3r+GN0QbQ7uZm/Vi/17m9v3fnyVZrjwn+DIWm6B1F/gDbHWYd1WhuSIAAAAASUVORK5CYII=" InformativeScreenshot="c604eb5834fbdba0448841926a4fa08c.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='- Consulta de Procesos - eSATJE -' /&gt;" SearchSteps="FuzzySelector, Image">
+                      <uix:TargetAnchorable.FullSelectorArgument>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_48">"&lt;webctrl parentid='form1:dataTableJuicios2:"+index+":btnAbrirMovimientos' tag='SPAN' /&gt;"</mca:CSharpValue>
+                        </InArgument>
+                      </uix:TargetAnchorable.FullSelectorArgument>
+                      <uix:TargetAnchorable.FuzzySelectorArgument>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_49">"&lt;webctrl parentid='form1:dataTableJuicios2:"+index+":btnAbrirMovimientos' tag='SPAN' /&gt;"</mca:CSharpValue>
+                        </InArgument>
+                      </uix:TargetAnchorable.FuzzySelectorArgument>
+                    </uix:TargetAnchorable>
+                  </uix:NClick.Target>
+                </uix:NClick>
+                <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="636.8,22.4" sap2010:WorkflowViewState.IdRef="Delay_8" />
+                <uix:NClick ClickType="Single" DisplayName="Click 'Ver Detalle'" sap:VirtualizedContainerService.HintSize="636.8,157.6" sap2010:WorkflowViewState.IdRef="NClick_12" KeyModifiers="None" MouseButton="Left">
+                  <uix:NClick.Target>
+                    <uix:TargetAnchorable BrowserURL="http://consultas.funcionjudicial.gob.ec/informacionjudicial/public/informacion.jsf" DesignTimeRectangle="1786, 419, 44, 30" ElementType="Button" FriendlyName="'Ver Detalle'" FullSelectorArgument="&lt;webctrl id='formJuicioDialogo:dataTableMovimiento:0:*' tag='BUTTON' type='submit' /&gt;" FuzzySelectorArgument="&lt;webctrl id='formJuicioDialogo:dataTableMovimiento:0:*' tag='BUTTON' type='submit' /&gt;" Guid="277c65ff-6713-4e7f-85fc-b6350d15717e" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADAAAAAiCAYAAAAZHFoXAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAASHSURBVFhH7Zh7TFt1FMf9zwFOKAvOZC4ap3OaLCYzMSiLOPUPp4nQVmjLYAgO2AZsYyAYVnm4AntYEHSOKVRuX4NCC6VvHi2zU9yYMLqHxqlRtz9mjGxOl7mM8fXccrcgHdGs2Eeyk5zce9t7c76fnt/tPd97F8I87gAEO/4TwIU/rmDszC9oc5xGltyFJ3I7seatbrRYT3BnBC/mBJiamsK1yes4P3EZzrGfUa06gueKuxGV3IYFyUrEbzXgY7OHOzt4MSfA5PUp/HrxMuS6Y3h2qx4LBSScrybxjDcTigxoDcUOXL02iTPnLqDZ5EFSlQWP5egQK9Iggq/kxLMgLIAeClsIAriOn0XBh58hvsiIOLEKUYIbwjnxHEBiSTfqdSNwe85B4fgayv5v/jUZSoX9NAzu7/Dt2Qmuon/hA1BvGMeSdFoqJNKbM4XfTAYvlPag7MAQylsPI6G4F4mlJjxfNncmlk6fk7DdiORqOzrd33MV/QsfgCrtGCd8tuiZyeClMiPy5H14VWrCAoEakWyn6LoI2kYIGNxN+5FCdp8+p2SPb+R9aVrs1Z/kKvoXvgCa0VsInp3TAPmN/RBWW3EPCV6UyiDmdQaxKQziRCSchMaJ6Zg+Z7+fef1DWR1o6j3FVfQv/ALY8J4D/Eoz1pQYkLnLhrXlRohkNmxudGKhsA07FF9AUG3B0gzNP7oaMgDZexxIrjBDUGVCWbML62qsKPzAiZ2qYeqGEp+Yx5HbMIBlWQdDGOAdE4QE8Dbd0Om1NmwhAJn6Sy9Aq9WDvIZBAtCGKoCdOmCiZWRCyUdOSGQWFDQN4l3ldAcOmI4jR37rDjQaQ+Amvl2AB99gAcKxA+zTnP5yeSItajvGuYr+RcAAYlLVWLGhHS9LzcjYM4juz3/gKvoXAQJoxwOZHcjc3QdN/yk4R3/Cj+d/5yr6FwEDWJFnQEPXKC7+eZWrND8RsCW0PFePuoOjZI7CFODRnC7UaI9h4tJfXKX5iYACyDQjdwBmx20DsH4gK5wBWIOfXmtFEs1C4QfAV2HtDjMKGgcg2kkQFb1hAECjAGvs7yWXFb+tG7Xao6ijfJGWkrDajNL9TqQRwMxxusXiQW59sAG8Mww5K5EaKzd2gU9+trzFTQ+lr5DXeAiP5+qQXmeDtGUI62lbtG8Iu7RHvABt9pPYRObmkeygATA0eGmwNLMdq4t7aNZ3QWEZh7xjBEmVVizJaMf9GR1YV2elDrggllmx6f1BVLYNI1rIYF/POLL3DuDhoHSA/eVpcnyqUI+S5kPQ9Hmgsp/Aa2TiF0tYi8iaeBWiU1VYla9DYlEXntzYjme2dHmXFeuDk8itPV3YiTiJygtQownEg0w7hkgSv1iiRMZuByo+PQxpq5u8rh3Lc0hMmhZRN006g0ja54lUiBWrEZNCW1pqi8TsizAy9RItTaEq7xuLZW/qUMEcxW+XrnCV5id8AOoNHqze3oNt+92o0wwjv8mJV6QWWuudiCaBPBLII1G8FOV0svs+yZ1DWxaKzZWb9ZDr2Fnof+5AeAXwN949Bq0UtpO4AAAAAElFTkSuQmCC" InformativeScreenshot="e654e7d85bfe00e6e0ee1e56e9afadb5.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='- Consulta de Procesos - eSATJE -' /&gt;" SearchSteps="FuzzySelector, Image" />
+                  </uix:NClick.Target>
+                </uix:NClick>
+                <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="636.8,231.2" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                  <ui:CommentOut.Body>
+                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="304,152.8" sap2010:WorkflowViewState.IdRef="Sequence_46">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Assign sap:VirtualizedContainerService.HintSize="262.4,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="scg:ICollection(x:String)">
+                            <mca:CSharpReference x:TypeArguments="scg:ICollection(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_38">temp_list</mca:CSharpReference>
+                          </OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                            <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_73">new List&lt;string&gt;()</mca:CSharpValue>
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </ui:CommentOut.Body>
+                </ui:CommentOut>
+                <ui:BuildDataTable DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="636.8,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Extracted_data&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100000&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;&lt;/NewDataSet&gt;">
+                  <ui:BuildDataTable.DataTable>
+                    <OutArgument x:TypeArguments="sd:DataTable">
+                      <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_39">actuations_datatable</mca:CSharpReference>
+                    </OutArgument>
+                  </ui:BuildDataTable.DataTable>
+                </ui:BuildDataTable>
+                <ui:InterruptibleDoWhile DisplayName="Hacer mientras" sap:VirtualizedContainerService.HintSize="636.8,2584.8" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_4">
+                  <ui:InterruptibleDoWhile.Body>
+                    <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="601.6,2417.6" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:String" Name="row_text" />
+                        <Variable x:TypeArguments="ui:UiElement" Name="table_ui_element" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Delay DisplayName="Retraso" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="560,22.4" sap2010:WorkflowViewState.IdRef="Delay_9" />
+                      <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="560,1026.4" sap2010:WorkflowViewState.IdRef="ForEach`1_1">
+                        <ui:ForEach.Body>
+                          <ActivityAction x:TypeArguments="x:Object">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="x:Object" Name="index_row" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="524.8,901.6" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="scg:IEnumerable(uuam:NWordInfo)" Name="row_info" />
+                              </Sequence.Variables>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke retrieve_actuaciones_ workflow" sap:VirtualizedContainerService.HintSize="483.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="retrieve_actuaciones_.xaml">
+                                <ui:InvokeWorkflowFile.Arguments>
+                                  <InArgument x:TypeArguments="x:Int32" x:Key="incremento">
+                                    <mca:CSharpValue x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpValue`1_79">incremento</mca:CSharpValue>
+                                  </InArgument>
+                                  <OutArgument x:TypeArguments="x:String" x:Key="row_text">
+                                    <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_32">row_text</mca:CSharpReference>
+                                  </OutArgument>
+                                  <OutArgument x:TypeArguments="scg:IEnumerable(uuam:NWordInfo)" x:Key="row_info">
+                                    <mca:CSharpReference x:TypeArguments="scg:IEnumerable(uuam:NWordInfo)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_33">row_info</mca:CSharpReference>
+                                  </OutArgument>
+                                  <InArgument x:TypeArguments="x:Object" x:Key="index_row">
+                                    <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_65">index_row</mca:CSharpValue>
+                                  </InArgument>
+                                  <OutArgument x:TypeArguments="x:Boolean" x:Key="break_controller">
+                                    <mca:CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_34">break_controller</mca:CSharpReference>
+                                  </OutArgument>
+                                </ui:InvokeWorkflowFile.Arguments>
+                              </ui:InvokeWorkflowFile>
+                              <If sap:VirtualizedContainerService.HintSize="483.2,294.4" sap2010:WorkflowViewState.IdRef="If_7">
+                                <If.Condition>
+                                  <InArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_66">break_controller == true</mca:CSharpValue>
+                                  </InArgument>
+                                </If.Condition>
+                                <If.Then>
+                                  <Sequence sap:VirtualizedContainerService.HintSize="241.6,115.2" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:Break sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Break_1" />
+                                  </Sequence>
+                                </If.Then>
+                                <If.Else>
+                                  <Sequence sap:VirtualizedContainerService.HintSize="200,84.8" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </Sequence>
+                                </If.Else>
+                              </If>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="483.2,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn">
+                                <ui:LogMessage.Message>
+                                  <InArgument x:TypeArguments="x:Object">
+                                    <mca:CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_81">"index: "+index_row+" "+incremento+ ", "+row_text</mca:CSharpValue>
+                                  </InArgument>
+                                </ui:LogMessage.Message>
+                              </ui:LogMessage>
+                              <ui:AddDataRow DataRow="{x:Null}" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="483.2,188" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
+                                <ui:AddDataRow.ArrayRow>
+                                  <InArgument x:TypeArguments="s:Object[]">
+                                    <mca:CSharpValue x:TypeArguments="s:Object[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_83">new String[] {row_text}</mca:CSharpValue>
+                                  </InArgument>
+                                </ui:AddDataRow.ArrayRow>
+                                <ui:AddDataRow.DataTable>
+                                  <InOutArgument x:TypeArguments="sd:DataTable">
+                                    <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_40">actuations_datatable</mca:CSharpReference>
+                                  </InOutArgument>
+                                </ui:AddDataRow.DataTable>
+                              </ui:AddDataRow>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEach.Body>
+                        <ui:ForEach.Values>
+                          <InArgument x:TypeArguments="sc:IEnumerable">
+                            <mca:CSharpValue x:TypeArguments="sc:IEnumerable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_64">iter_list</mca:CSharpValue>
+                          </InArgument>
+                        </ui:ForEach.Values>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:ForEach>
+                      <ui:UiElementExists DisplayName="Elemento existente 'A  #'" sap:VirtualizedContainerService.HintSize="560,107.2" sap2010:WorkflowViewState.IdRef="UiElementExists_7">
+                        <ui:UiElementExists.Exists>
+                          <OutArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_24">area_exists</mca:CSharpReference>
+                          </OutArgument>
+                        </ui:UiElementExists.Exists>
+                        <ui:UiElementExists.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="efaac342-4603-4141-9914-6c3ced14068d" InformativeScreenshot="afecedbbbe615f83e39e9c5b2afcd54c" Selector="&lt;webctrl id='formJuicioDetalle:dataTable_paginator_bottom' aria-role='navigation' tag='DIV' /&gt;" TimeoutMS="50">
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:UiElementExists.Target>
+                      </ui:UiElementExists>
+                      <ui:UiElementExists DisplayName="Elemento existente 'A  #'" sap:VirtualizedContainerService.HintSize="560,107.2" sap2010:WorkflowViewState.IdRef="UiElementExists_8">
+                        <ui:UiElementExists.Exists>
+                          <OutArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_25">buttomExist</mca:CSharpReference>
+                          </OutArgument>
+                        </ui:UiElementExists.Exists>
+                        <ui:UiElementExists.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="efaac342-4603-4141-9914-6c3ced14068d" InformativeScreenshot="afecedbbbe615f83e39e9c5b2afcd54c" Selector="&lt;webctrl class='ui-paginator-next ui-state-default ui-corner-all ui-state-disabled' /&gt;" TimeoutMS="50">
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:UiElementExists.Target>
+                      </ui:UiElementExists>
+                      <If DisplayName="Si" sap:VirtualizedContainerService.HintSize="560,332" sap2010:WorkflowViewState.IdRef="If_5">
+                        <If.Condition>
+                          <InArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_57">area_exists == false</mca:CSharpValue>
+                          </InArgument>
+                        </If.Condition>
+                        <If.Then>
+                          <Sequence sap:VirtualizedContainerService.HintSize="304,152.8" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="262.4,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">
+                                  <mca:CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_26">buttomExist</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_35">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Sequence>
+                        </If.Else>
+                      </If>
+                      <If DisplayName="Si" sap:VirtualizedContainerService.HintSize="560,529.6" sap2010:WorkflowViewState.IdRef="If_6">
+                        <If.Condition>
+                          <InArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_58">buttomExist == false</mca:CSharpValue>
+                          </InArgument>
+                        </If.Condition>
+                        <If.Then>
+                          <Sequence sap:VirtualizedContainerService.HintSize="375.2,350.4" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign DisplayName="Asignar" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Int32">
+                                  <mca:CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_27">incremento</mca:CSharpReference>
+                                </OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Int32">
+                                  <mca:CSharpValue x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpValue`1_59">incremento+25</mca:CSharpValue>
+                                </InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <uix:NClick ClickType="Single" DisplayName="Clic 'N'" sap:VirtualizedContainerService.HintSize="333.6,157.6" sap2010:WorkflowViewState.IdRef="NClick_13" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="8c5520bb-bdcc-4dab-b54a-1e01b90e661e" Version="V1">
+                              <uix:NClick.Target>
+                                <uix:TargetAnchorable BrowserURL="http://consultas.funcionjudicial.gob.ec/informacionjudicial/public/informacion.jsf" DesignTimeRectangle="944, 926, 38, 29" ElementType="Text" FriendlyName="'N'" FullSelectorArgument="&lt;webctrl aaname='N' parentid='formJuicioDetalle:dataTable_paginator_bottom' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='N' parentid='formJuicioDetalle:dataTable_paginator_bottom' tag='A' type='' check:text='N' /&gt;" Guid="caca97e0-e214-4eb9-b386-9437dfe50727" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACoAAAAhCAYAAACvBDmYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAIgSURBVFhH7ZjLT1NBFIdN/J9caUCjCzeEuCDGxgULN+qWsGMBpYEQRJOiURMTywYINERrb+WprTyE0lJpbxXkkfJoKQ9BUNrVz/ndhEKbIbHJ2HqTu/g2M50535w5pzf3XrhY5YIZsERVkyd6qU5Du/Yd/eE03HOlh3EZnx5nvUhOlJM9wRSmE0fQt7OIlwHGZXx6FMrmRHkS/ki2QamhB32kokx7uTJZCD3oIxVljcgWlQv6WKIqsURVY4mqRono5OpPdE0l4A4n4V/6gbnk79xcdCuDwfgOhr/tIrTxK29dMSgR7Z5ZR4XdC9tTPx69/4p30TSCa0f4kjpGWMi1i7FWTUdfaBMTKweIiIPo6Yx0r/NQJnq50YNKIXujxQfbMz/sb6LQ9G3MC1lmkqI32wZR4/wgnt0bCK4X93hWKnrCNYeG6o4R3Hs1AfvbKMYW9zC6sAeHJ4bKZi/uPg/g/uspuCYT0v1k/BNRZvV250fU9czCObKIT8sH8Mxvob43hKsOLx66PqPBHRHP703pfjKUiV5p8uC6ELz1ZBQPhMjjoQWjgVingaV94+rviJJgJgciqaIbS4koa47XXftyHC/8yyKD+8a4ns4azcTrb9Pihnjh2r9FiSiz4xONMybqcHrt0Gigk7mY6G52Ov/CIsnT8WJRIloKLFHVWKKqMb+oad5CTfNeb5ovJYSTPAnTzhopNYzL+IWSJE/0/8WFPxyAi2rfmEHJAAAAAElFTkSuQmCC" InformativeScreenshot="b7bf3ce498c78a2f053c4d2538c1677a.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='- Consulta de Procesos - eSATJE -' /&gt;" SearchSteps="FuzzySelector, Image" />
+                              </uix:NClick.Target>
+                            </uix:NClick>
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_37">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Sequence>
+                        </If.Else>
+                      </If>
+                    </Sequence>
+                  </ui:InterruptibleDoWhile.Body>
+                  <ui:InterruptibleDoWhile.Condition>
+                    <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_50">buttomExist == false</mca:CSharpValue>
+                  </ui:InterruptibleDoWhile.Condition>
+                </ui:InterruptibleDoWhile>
+                <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="636.8,22.4" sap2010:WorkflowViewState.IdRef="Delay_10" />
+                <uix:NClick ClickType="Single" DisplayName="Click 'Cerrar'" sap:VirtualizedContainerService.HintSize="636.8,157.6" sap2010:WorkflowViewState.IdRef="NClick_14" KeyModifiers="None" MouseButton="Left">
+                  <uix:NClick.Target>
+                    <uix:TargetAnchorable BrowserURL="http://consultas.funcionjudicial.gob.ec/informacionjudicial/public/informacion.jsf" DesignTimeRectangle="918, 181, 81, 29" ElementType="Text" FriendlyName="'Cerrar'" FullSelectorArgument="&lt;webctrl parentid='formJuicioDetalle:btnCerrar' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='formJuicioDetalle:btnCerrar' tag='SPAN' type='' aaname='Cerrar' check:text='Cerrar' /&gt;" Guid="6b1fa5f8-fa8d-425b-82b2-02d0d2d0c546" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFUAAAAhCAYAAACoRueNAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAF0SURBVGhD7ZbRksIgDEX9/+/00dfO6FRgi4UYIcNaN3fc6s3MealQ5JCEHo6nKRFfKBUApQKgVACUCoBSAVAqAEoFQKkAKBUApQLASJ1jaiOG2R77gbhLvfQ+VcQ0GXM+DVepUyjulrie7effkLGOUkOq7sLc/jan6/LcEtpmtj6M4zkuub1GUOPyGJkXo6y7LNDNq6H/0/2Q1VzHKvKTKhuJ6WL93rGKtkIEGHLq+602czs0c84a9cB05UjUA3HAT6pcTk9KVeMlQ9pnWlCzaS3VajX3qugrSEvtq+rvvE3qbxfa7R1K6kNb0PMHGdau0UvFXJxvK/+x1CLxFanG51yN/UkdXlRFghLwTKZtl6r7dBU2Kv9/L/WxV1l9Lof0OpVRdWy32c1SjYNV6+xS6uhGX0NvYtvtvz1T+9ip1ILR1+yP/l6CCM280lNVtubI7xOJZew+pX45lAqAUgFQKgBKBUCpACgVAKUCoFQAlOrOlH4APLeACrP1mjYAAAAASUVORK5CYII=" InformativeScreenshot="fbade581545292e7ef22a0a6f8b6bc32.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='- Consulta de Procesos - eSATJE -' /&gt;" SearchSteps="FuzzySelector, Image">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target DesignTimeRectangle="904, 177, 109, 36" ElementType="Button" FriendlyName="'Cerrar'" FullSelectorArgument="&lt;webctrl id='formJuicioDetalle:btnCerrar' tag='BUTTON' type='reset' /&gt;" FuzzySelectorArgument="&lt;webctrl id='formJuicioDetalle:btnCerrar' tag='BUTTON' type='reset' aaname='Cerrar Ventana del  Detalle del proceso' check:text='Cerrar' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAHEAAAAoCAYAAADJ/xXvAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAINSURBVHhe7ZtBTsMwEEW5F2LPUTgbCIkLsOQM7KEgIZBYFbVKY5PfxO4knqRNhVp7+F96m8ZOIr+M7S584ZniQ4kGQokG0pP49P7jbx4//NXdwl/evpLMgBf4gSeZKBEXrh/e/P3zt3/5XPrFF8kNeIEfeJIio0QYRgOtM8kLeIKvkCgRpcoKLAN4gq+QKBFzrtaB5Al8hVBioVCiASjRAJRoAEo0ACUagBINkK/EynVvs4urK73tPydLievUn4jzS6XPfyY7icu6e4kmm5X+OyuyT2YSax9c1dXwWuU3ze+awGHlSvmLlWtqt00t2qFN7OdcfG7zgKRfiHyn3Ucl+p5plshLYhw459fa9YRWrJY44IqMcH9t2t5+JGqfNuEDkTNDTPgATkxeEuNm5kCJon2sgOFvUshgkKVEbereVX06Q0iJ6axxWoqWuG8DtL2HkNibZmX/iQoaPiOVeP6NVl4SZ06n0xI7acdIVP7ehFDiXqY2Nt2giwE/pJLmS5TrbBA0NZ1SYoJca7R1ColrlaiY0DYZ3NkSlQ9JPIcSD2J8x9lGDtq83en8SkxDiXNQ1iX9T3466FEgOGZNFNWI4H5RWteWEsmfQokGoEQDUKIBKNEAlGgASjQAJRpAlcgDNeUweqCGR9vKYfRoGw+Z5g+8wM/oIVMEF2AYpYo5l+QFvMCPFIj0JDIlxvtffjIq6zRXiGsAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NClick.Target>
+                </uix:NClick>
+                <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="636.8,22.4" sap2010:WorkflowViewState.IdRef="Delay_11" />
+                <uix:NClick ClickType="Single" DisplayName="Click 'Cerrar'" sap:VirtualizedContainerService.HintSize="636.8,157.6" sap2010:WorkflowViewState.IdRef="NClick_15" KeyModifiers="None" MouseButton="Left">
+                  <uix:NClick.Target>
+                    <uix:TargetAnchorable BrowserURL="http://consultas.funcionjudicial.gob.ec/informacionjudicial/public/informacion.jsf" DesignTimeRectangle="918, 250, 81, 29" ElementType="Text" FriendlyName="'Cerrar'" FullSelectorArgument="&lt;webctrl parentid='formJuicioDialogo:btnCancelar' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='formJuicioDialogo:btnCancelar' tag='SPAN' type='' aaname='Cerrar' check:text='Cerrar' /&gt;" Guid="6eb3632a-f0c3-4380-ac9b-b4206fe57dc6" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFUAAAAhCAYAAACoRueNAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAF0SURBVGhD7ZbRksIgDEX9/+/00dfO6FRgi4UYIcNaN3fc6s3MealQ5JCEHo6nKRFfKBUApQKgVACUCoBSAVAqAEoFQKkAKBUARuocUxsxzPbYD8Rd6qX3qSKmyZjzabhKnUJxt8T1bD//hox1lBpSdRfm9rc5XZfnltA2s/VhHM9xye01ghqXx8i8GGXdZYFuXg39n+6HrOY6VpGfVNlITBfr945VtBUiwJBT32+1mduhmXPWqAemK0eiHogDflLlcnpSqhovGdI+04KaTWupVqu5V0VfQVpqX1V/521Sf7vQbu9QUh/agp4/yLB2jV4q5uJ8W/mPpRaJr0g1Pudq7E/q8KIqEpSAZzJtu1Tdp6uwUfn/e6mPvcrqczmk16mMqmO7zW6WahysWmeXUkc3+hp6E9tu/+2Z2sdOpRaMvmZ/9PcSRGjmlZ6qsjVHfp9ILGP3KfXLoVQAlAqAUgFQKgBKBUCpACgVAKUCoFQAlOrOlH4A6u+ACkOFXngAAAAASUVORK5CYII=" InformativeScreenshot="88d1c53491a024b1c5c795966dd9a192.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='- Consulta de Procesos - eSATJE -' /&gt;" SearchSteps="FuzzySelector, Image">
+                      <uix:TargetAnchorable.Anchors>
+                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                          <uix:Target DesignTimeRectangle="856, 188, 113, 40" ElementType="Button" FriendlyName="'Cerrar'" FullSelectorArgument="&lt;webctrl tag='BUTTON' type='reset' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='reset' aaname='Cerrar Ventana del  No. proceso:  17311-2012-0047C   ' check:text='Cerrar' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAHEAAAAoCAYAAADJ/xXvAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAGmSURBVHhe7dTZTsJAFAbgSXw/H5Ibl6BGZGtZChRls2WLgkgR9UGOcy5IDA6dwYSLnvxNvpt25vyT/DCqGSXUnmypO/8+Wmv8QUG8IZ5hg4zTZSge3pl+Ujj7OgofKNCBjee1FTJOm6GO3cDrOcjlULzmP4dChnmeCa9X4Yw3uelMtzpoo0PfrZqRPlicGOekQYa7XYbi+9cV39e14cqqPuLDrY0zbJDhbpehWvq+dlHn0MEb+f2lVUMfzDTDBhnufmco0997n9dfULX3StWnFyt/sNS/rpVxThpkuNvPUL5+cYjXW1BFLyp151QKZ+n0Gl7Le0yzDkGGu0MZqqxfmPDHYntC90FkVWjF9NAeG+ekQYa7tAxVCGIyuWuMKO/3rW5qA7qtD40zbJDhLi1D5b0e7bsqd+myFNJFsWN1XXn8s98FMtzZMlSSJATZpghP5h91dp4jyDaUKABKFAAlCoASBUCJAqBEAVCiAChRAJQoAEoUACUKgBIFQIkCoEQBUKIAKFEAlCgAShQAJQqAEgVAiQKgRAFQogAoUQCUKABKzLwc/QB7HsvH6n/rZQAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
+                        </scg:List>
+                      </uix:TargetAnchorable.Anchors>
+                    </uix:TargetAnchorable>
+                  </uix:NClick.Target>
+                </uix:NClick>
+              </Sequence>
+            </Sequence>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="-9, -9, 1938, 1048" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAGESURBVDhPnZJNSwJRFIbvTxs0jbR0oZYTmIKiNGloZAgtHInA0SC0iRJcuEpsl58t8mOZbm2X2k95m3NhBgfHRS0e7nnvOeflnnsvS6cl5HIXKBZvOKR1ZPnapPWa9X0min4M3gdYrn44leo9RNGHZDJh0tmrjFFDFJVbiEd+MJ/Pi16/j1rtCaHQMUgTz5qezmYYTyZcpzPnWGiNeo56KGZezz66vR5PNhoNkCY+pzOU78p8XwweIpU647FOoSDzOuZy7aHd7eBBVeHWYiISPsFiuTJQFAWSdMpjWimv1zKn04G3dhvfWpKo1+uoVKp4aTaRiMd5/DEc8pjyuw6HAfUyu90Gj+cA0VgUsWiUxwTt64hi0LTq7NhsYIIgYBuSJGE0GvP7sMoTWw2UUok/V6fbg8vttqwhLA0CgYDRbJVfx9Ign5dNn4ZGCEciG3WEpYF+fDKi48/nX2i1XjfqCEsDujwyuMxmDYNt42y9RFV9NEagl/jTCH+BG7i1Y/4HQRDwCz+DPWwRh3ZvAAAAAElFTkSuQmCC" InformativeScreenshot="e456fcb7c68833029679b09468c9cae2.png" Selector="&lt;html app='chrome.exe' title='- Consulta de Procesos - eSATJE -'/&gt;" Url="http://consultas.funcionjudicial.gob.ec/informacionjudicial/public/informacion.jsf" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>
